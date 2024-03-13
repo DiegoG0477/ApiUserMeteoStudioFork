@@ -5,7 +5,7 @@ export class User {
         readonly first_last_name: string,
         readonly second_last_name: string,
         readonly email: string,
-        readonly passwoed: string,
+        readonly password: string,
         readonly birthdate: string
     ){}
 }
