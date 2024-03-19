@@ -10,7 +10,8 @@ export class RegisterUserUseCase {
     password: string,
     first_last_name: string,
     second_last_name: string,
-    birthdate: string
+    birthdate: string,
+    type_id : number
   ): Promise<User | null> {
     try {
       const user = await this.userRepository.registerUser(
@@ -19,7 +20,8 @@ export class RegisterUserUseCase {
         password,
         first_last_name,
         second_last_name,
-        birthdate
+        birthdate,
+        type_id
       );
       if(user){
         // envio a cola de broker 
