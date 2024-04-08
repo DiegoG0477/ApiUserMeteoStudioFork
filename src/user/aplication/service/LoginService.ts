@@ -12,7 +12,6 @@ export class LoginService{
 
       //comparacion
 
-
       const response = true;
       return response;
     } catch (error) {
