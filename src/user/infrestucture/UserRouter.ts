@@ -14,7 +14,7 @@ userRouter.get(
 )
 
 userRouter.get(
-    "/:email",
+    "/email/:email",
     getUserByEmailController.run.bind(getUserByEmailController)
 )
 

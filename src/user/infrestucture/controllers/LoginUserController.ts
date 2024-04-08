@@ -8,10 +8,8 @@ export class LoginUserController {
         const data = req.body;
         try {
             const response = await this.loginService.run(data.email, data.password);
-
             
             return response
-
         } catch (error) {
             return null
         }

@@ -8,6 +8,7 @@ export class GetUserByEmailController {
     const email: string = req.params.email;
 
     try {
+      console.log(email);
       const user = await this.getUserByEmailUseCase.run(email);
       if (user) {
         res.status(200).send({
@@ -26,7 +27,7 @@ export class GetUserByEmailController {
       } else {
         res.status(400).send({
           status: "error",
-          msn: "Ocurrio algún problema",
+          msn: "Ocurrio algún problema correo",email
         });
       }
     } catch (error) {

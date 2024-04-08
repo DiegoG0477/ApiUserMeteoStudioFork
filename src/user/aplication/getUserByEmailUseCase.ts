@@ -6,8 +6,9 @@ export class GetUserByEmailUseCase {
 
   async run(email: string): Promise<User | null> {
     try {
+      console.log(email);
       const user = this.userRepository.getbyEmail(email);
-      
+      console.log(user,email);
       return user;
     } catch (error) {
       return null;

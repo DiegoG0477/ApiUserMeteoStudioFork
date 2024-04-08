@@ -18,7 +18,7 @@ export class MysqlUserRepository implements UserRepository {
   ): Promise<User | null> {
     let user = null;
     const sql =
-      "SELECT INTO users (name,email, password, first_last_name , second_last_name , birthdate,  ) VALUES (?,?,?,?,?,?,?)";
+      "INSERT INTO users (name, email, password, first_last_name , second_last_name , birthdate, type_id  ) VALUES (?,?,?,?,?,?,?)";
     const params: any[] = [
       name,
       email,
@@ -50,9 +50,10 @@ export class MysqlUserRepository implements UserRepository {
   async getUsers(): Promise<User[] | null> {
     const sql = "SELECT * FROM users";
     try {
-      const [data]: any = query(sql, []);
+      const [data]: any = await query(sql, []);
+      
       const dataUsers = Object.values(JSON.parse(JSON.stringify(data)));
-
+    
       return dataUsers.map(
         (user: any) =>
           new User(
@@ -72,7 +73,7 @@ export class MysqlUserRepository implements UserRepository {
   }
 
   async getById(id: number): Promise<User | null> {
-    const sql = "SELECT * FROM user WHERE id=?";
+    const sql = "SELECT * FROM users WHERE id=?";
     const params: any[] = [id];
 
     try {
@@ -93,11 +94,12 @@ export class MysqlUserRepository implements UserRepository {
 
   }
   async getbyEmail(email: string): Promise<User | null> {
-    const sql = "SELECT * FROM user WHERE email=?";
+    const sql = "SELECT * FROM users WHERE email=?";
     const params: any[] = [email];
 
     try {
         const [result]: any = await query(sql, params);
+
         return new User(
           result[0].id,
           result[0].name,

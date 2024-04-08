@@ -6,6 +6,8 @@ export class GetUsersController {
   async run(req: Request, res: Response): Promise<void> {
     try {
       const users = await this.getUsersUseCase.run();
+    
+      
       if (users) {
         res.status(200).send({
           status: "succes",
@@ -25,7 +27,7 @@ export class GetUsersController {
       } else {
         res.status(400).send({
           status: "error",
-          msn: "Ocurrio algún problema",
+          msn: "Ocurrio algún problema ",
         });
       }
     } catch (error) {

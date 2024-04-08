@@ -6,7 +6,9 @@ export class GetUsersUseCase {
 
   async run(): Promise<User[] | null> {
     try {
+      
       const users = this.userRepository.getUsers();
+     
       return users;
     } catch (error) {
       return null;
