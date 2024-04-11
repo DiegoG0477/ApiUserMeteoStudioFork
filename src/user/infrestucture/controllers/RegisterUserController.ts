@@ -9,10 +9,10 @@ export class RegisterUserController {
     try {
       const user = await this.registerUserUseCase.run(
         data.name,
-        data.first_last_name,
-        data.second_last_name,
         data.email,
         data.password,
+        data.first_last_name,
+        data.second_last_name,
         data.birthdate,
         data.type_id
       );
@@ -23,12 +23,12 @@ export class RegisterUserController {
           data: {
             id: user?.id,
             name: user?.name,
-            first_last_name: user?.first_last_name,
-            second_last_name: user?.second_last_name,
             email: user?.email,
             password: user?.password,
+            first_last_name: user?.first_last_name,
+            second_last_name: user?.second_last_name,
             birthdate: user?.birthdate,
-            type_id : user?.type_id
+            type_id: user?.type_id,
           },
         });
       } else

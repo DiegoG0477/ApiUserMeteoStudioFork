@@ -2,7 +2,11 @@ import { GetUSerByIdUseCase } from "../aplication/GetUserByIdUseCase";
 import { GetUserByEmailUseCase } from "../aplication/GetUserByEmailUseCase";
 import { GetUsersUseCase } from "../aplication/GetUsersUseCase";
 import { RegisterUserUseCase } from "../aplication/RegisterUserUseCase";
-import { LoginService } from "../aplication/service/LoginService";
+import { LoginService } from "../aplication/ILoginService";
+
+//services
+import { EncryptService } from "../../shared/bcrypt/infrestructure/EncryptService";
+// mqpp
 
 import { MysqlUserRepository } from "./MysqlUserRepository";
 
@@ -13,10 +17,12 @@ import { GetUsersController } from "./controllers/GetUsersController";
 import { GetUserByIdController } from "./controllers/GetUserByIdController";
 import { LoginUserController } from "./controllers/LoginUserController";
 
+//services
+export const encryptService = new EncryptService();
 export const mysqlUserRepository = new MysqlUserRepository ();
 
-
-export const registerUserUseCase = new RegisterUserUseCase(mysqlUserRepository);
+export const loginService = new LoginService(mysqlUserRepository, encryptService);
+export const registerUserUseCase = new RegisterUserUseCase(mysqlUserRepository, encryptService);
 export const getUserByEmailUseCase = new GetUserByEmailUseCase(mysqlUserRepository);
 export const getUserByIdUseCase = new GetUSerByIdUseCase(mysqlUserRepository);
 export const getUsersUseCase = new GetUsersUseCase ( mysqlUserRepository);
@@ -26,3 +32,4 @@ export const registerUserController = new RegisterUserController(registerUserUse
 export const getUserByEmailController = new GetUserByEmailController(getUserByEmailUseCase);
 export const getUserByIdController = new GetUserByIdController(getUserByIdUseCase);
 export const getUsersController = new GetUsersController(getUsersUseCase);
+export const loginUserController = new LoginUserController(loginService);

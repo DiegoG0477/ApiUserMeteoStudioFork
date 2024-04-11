@@ -6,6 +6,7 @@ export class GetUSerByIdUseCase {
 
   async run (id: number):Promise <User | null>{
         try {
+         
             const user = this.userRepository.getById(id);
             return user
         } catch (error) {

@@ -5,10 +5,8 @@ export class GetUsersUseCase {
   constructor(readonly userRepository: UserRepository) {}
 
   async run(): Promise<User[] | null> {
-    try {
-      
-      const users = this.userRepository.getUsers();
-     
+    try {  
+      const users = this.userRepository.getUsers(); 
       return users;
     } catch (error) {
       return null;

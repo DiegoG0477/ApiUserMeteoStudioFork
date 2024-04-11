@@ -1,18 +1,23 @@
-import { Request,Response } from "express";
-import { LoginService } from "../../aplication/service/LoginService";
+import { Request, Response } from "express";
+import { LoginService } from "../../aplication/ILoginService";
 
 export class LoginUserController {
-    constructor( readonly loginService: LoginService){}
+  private readonly loginService: LoginService;
 
-    async run(req: Request , res :Response){
-        const data = req.body;
-        try {
-            const response = await this.loginService.run(data.email, data.password);
-            
-            return response
-        } catch (error) {
-            return null
-        }
-       
+  constructor(loginService: LoginService) {
+    this.loginService = loginService;
+  }
+
+  async login(req: Request, res: Response) {
+    const data = req.body;
+    try {
+      const response = await this.loginService.login(data.email, data.password);
+      
+      return res.status(200).json({
+        token: response,
+      });
+    } catch (error) {
+      return null;
     }
+  }
 }

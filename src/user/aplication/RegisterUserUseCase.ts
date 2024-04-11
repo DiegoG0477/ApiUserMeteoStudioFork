@@ -1,8 +1,12 @@
 import { User } from "../domain/User";
 import { UserRepository } from "../domain/userRepository/UserRepository";
+import { IEncryptService } from "../../shared/bcrypt/aplication/IEncryptService";
 
 export class RegisterUserUseCase {
-  constructor(readonly userRepository: UserRepository) {}
+  constructor(readonly userRepository: UserRepository,
+  readonly iEncryptedService: IEncryptService
+
+  ) {}
 
   async run(
     name: string,
@@ -13,11 +17,13 @@ export class RegisterUserUseCase {
     birthdate: string,
     type_id : number
   ): Promise<User | null> {
+
+    const encode = this.iEncryptedService.encodePassword(password);
     try {
       const user = await this.userRepository.registerUser(
         name,
         email,
-        password,
+        encode,
         first_last_name,
         second_last_name,
         birthdate,
@@ -25,7 +31,6 @@ export class RegisterUserUseCase {
       );
       if(user){
         // envio a cola de broker 
-        //envio 
       }
       return user;
     } catch (error) {

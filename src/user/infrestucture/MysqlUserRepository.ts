@@ -7,6 +7,8 @@ export class MysqlUserRepository implements UserRepository {
     throw new Error("Method not implemented.");
   }
 
+  
+
   async registerUser(
     name: string,
     email: string,
