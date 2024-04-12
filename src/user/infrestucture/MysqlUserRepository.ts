@@ -18,6 +18,7 @@ export class MysqlUserRepository implements UserRepository {
     birthdate: string,
     type_id: number
   ): Promise<User | null> {
+    console.log("ajam")
     let user = null;
     const sql =
       "INSERT INTO users (name, email, password, first_last_name , second_last_name , birthdate, type_id  ) VALUES (?,?,?,?,?,?,?)";
@@ -31,7 +32,9 @@ export class MysqlUserRepository implements UserRepository {
       type_id,
     ];
     try {
+      console.log("es la query")
       const [userR]: any = await query(sql, params);
+      console.log(userR)
       user = new User(
         userR.id,
         name,

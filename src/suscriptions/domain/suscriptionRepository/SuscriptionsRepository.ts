@@ -8,5 +8,5 @@ export interface SuscriptionRepository {
     plan_expiration: string
   ): Promise<Suscription | null>;
   updateSuscription(id: number): Promise<Suscription | null>;
-  deleteSuscription(id: number): Promise<Suscription | null>;
+  deleteSuscription(id: number): Promise<Suscription | null>; 
 }

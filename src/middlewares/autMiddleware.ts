@@ -16,10 +16,12 @@ export function verifyToken (req: Request, res: Response, next: NextFunction) {
       token,
       process.env.JWT_SECRET as string,
       (err: any, user: any) => {
+        console.log(req.body,"datdata")
+        console.log(user);
         if (err) {
           return res.sendStatus(403); // Si el token no es válido, se devuelve un error 403 (Prohibido)
         }
-        req.body = user;
+     
         next();
       }
     );

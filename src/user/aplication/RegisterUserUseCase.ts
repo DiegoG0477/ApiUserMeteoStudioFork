@@ -17,7 +17,7 @@ export class RegisterUserUseCase {
     birthdate: string,
     type_id : number
   ): Promise<User | null> {
-
+    
     const encode = this.iEncryptedService.encodePassword(password);
     try {
       const user = await this.userRepository.registerUser(
