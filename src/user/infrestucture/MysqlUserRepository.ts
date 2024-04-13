@@ -32,9 +32,7 @@ export class MysqlUserRepository implements UserRepository {
       type_id,
     ];
     try {
-      console.log("es la query")
       const [userR]: any = await query(sql, params);
-      console.log(userR)
       user = new User(
         userR.id,
         name,

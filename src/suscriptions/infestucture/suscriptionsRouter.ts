@@ -2,6 +2,7 @@ import express from "express";
 
 export const suscriptionsRouter = express.Router();
 
+import { createSuscriptionController } from "./dependencies";
 
 suscriptionsRouter.get(
     "/",
@@ -19,7 +20,7 @@ suscriptionsRouter.get(
 
 suscriptionsRouter.post(
     "/",
-    
+    createSuscriptionController.run.bind(createSuscriptionController)
 )
 
 suscriptionsRouter.put(
