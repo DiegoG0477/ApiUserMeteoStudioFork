@@ -7,8 +7,6 @@ export class MysqlUserRepository implements UserRepository {
     throw new Error("Method not implemented.");
   }
 
-  
-
   async registerUser(
     name: string,
     email: string,
@@ -18,7 +16,7 @@ export class MysqlUserRepository implements UserRepository {
     birthdate: string,
     type_id: number
   ): Promise<User | null> {
-    console.log("ajam")
+    console.log("ajam");
     let user = null;
     const sql =
       "INSERT INTO users (name, email, password, first_last_name , second_last_name , birthdate, type_id  ) VALUES (?,?,?,?,?,?,?)";
@@ -54,9 +52,9 @@ export class MysqlUserRepository implements UserRepository {
     const sql = "SELECT * FROM users";
     try {
       const [data]: any = await query(sql, []);
-      
+
       const dataUsers = Object.values(JSON.parse(JSON.stringify(data)));
-    
+
       return dataUsers.map(
         (user: any) =>
           new User(
@@ -80,42 +78,40 @@ export class MysqlUserRepository implements UserRepository {
     const params: any[] = [id];
 
     try {
-        const [result]: any = await query(sql, params);
-        return new User(
-          result[0].id,
-          result[0].name,
-          result[0].email,
-          result[0].password,
-          result[0].first_last_name,
-          result[0].second_last_name,
-          result[0].birthdate,
-          result[0].type_id,
-        );
-      } catch (error) {
-        return null;
-      }
-
+      const [result]: any = await query(sql, params);
+      return new User(
+        result[0].id,
+        result[0].name,
+        result[0].email,
+        result[0].password,
+        result[0].first_last_name,
+        result[0].second_last_name,
+        result[0].birthdate,
+        result[0].type_id
+      );
+    } catch (error) {
+      return null;
+    }
   }
   async getbyEmail(email: string): Promise<User | null> {
     const sql = "SELECT * FROM users WHERE email=?";
     const params: any[] = [email];
 
     try {
-        const [result]: any = await query(sql, params);
+      const [result]: any = await query(sql, params);
 
-        return new User(
-          result[0].id,
-          result[0].name,
-          result[0].email,
-          result[0].password,
-          result[0].first_last_name,
-          result[0].second_last_name,
-          result[0].birthdate,
-          result[0].type_id,
-        );
-      } catch (error) {
-        return null;
-      }
-
+      return new User(
+        result[0].id,
+        result[0].name,
+        result[0].email,
+        result[0].password,
+        result[0].first_last_name,
+        result[0].second_last_name,
+        result[0].birthdate,
+        result[0].type_id
+      );
+    } catch (error) {
+      return null;
+    }
   }
 }

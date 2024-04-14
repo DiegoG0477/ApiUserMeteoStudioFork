@@ -6,7 +6,7 @@ import cors from "cors";
 dotenv.config()
 
 import { userRouter } from "./user/infrestucture/UserRouter";
-import { suscriptionsRouter } from "./suscriptions/infestucture/suscriptionsRouter";
+import { subscriptionsRouter } from "./suscriptions/infestucture/subscriptionsRouter";
 const app = express();
 const corsOptions: cors.CorsOptions = {
   origin: '*',
@@ -19,7 +19,7 @@ app.disable("x-powered-by");
 
 app.use(express.json());
 app.use("/users", userRouter);
-app.use("/suscriptions", suscriptionsRouter);
+app.use("/subscriptions", subscriptionsRouter);
 
 
 app.listen(3000, () => {

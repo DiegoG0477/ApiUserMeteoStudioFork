@@ -1,26 +1,26 @@
-import { CreateSuscriptionUseCase } from "../../aplication/CreateSuscriptionUseCase";
+import { CreateSubscriptionUseCase } from "../../aplication/CreateSubscriptionUseCase";
 import { Request, Response } from "express";
 
-export class CreateSuscriptionController {
-  constructor(readonly createSuscriptionUseCase: CreateSuscriptionUseCase) {}
+export class CreateSubscriptionController {
+  constructor(readonly createSubscriptionUseCase: CreateSubscriptionUseCase) {}
 
   async run(req: Request, res: Response) {
     const data = req.body;
     try {
-      const suscription = await this.createSuscriptionUseCase.run(
+      const subscription = await this.createSubscriptionUseCase.run(
         data.active_plan_id,
         data.user_id,
         data.plan_expiration
       );
 
-      if (suscription) {
+      if (subscription) {
         res.status(201).send({
           status: "succes",
           data: {
-            id_suscription: suscription?.id_suscription,
-            active_plan_id: suscription?.active_plan_id,
-            user_id: suscription?.user_id,
-            plan_expiration: suscription?.plan_expiration,
+            id_subscription: subscription?.id_subscription,
+            active_plan_id: subscription?.active_plan_id,
+            user_id: subscription?.user_id,
+            plan_expiration: subscription?.plan_expiration,
           },
         });
       } else {

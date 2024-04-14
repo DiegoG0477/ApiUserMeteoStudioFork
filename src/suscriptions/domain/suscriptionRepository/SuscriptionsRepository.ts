@@ -1,13 +1,19 @@
-import { Suscription } from "../Suscriptions";
+import { Subscription } from "../Suscriptions";
 
-export interface SuscriptionRepository {
-  getSuscriptionByid(id: number): Promise<Suscription | null>;
-  getSuscriptionByIdUser(id_user: number):Promise<Suscription|null>;
-  createSuscription(
+export interface SubscriptionRepository {
+  getSubscriptionByid(id_subscription: number): Promise<Subscription | null>;
+  getSubscriptionByIdUser(user_id: number): Promise<Subscription[] | null>;
+  getAllSubscriptions(): Promise<Subscription[] | null>;
+  createSubscription(
     user_id: number,
     active_plan_id: number,
     plan_expiration: string
-  ): Promise<Suscription | null>;
-  updateSuscription(id: number): Promise<Suscription | null>;
-  deleteSuscription(id: number): Promise<Suscription | null>; 
+  ): Promise<Subscription | null>;
+  updateSubscription(
+    id_subscription: number,
+    user_id: number,
+    active_plan_id: number,
+    plan_expiration: string
+  ): Promise<Subscription | null>;
+  deleteSubscription(id_subscription: number): Promise<Subscription | null>;
 }
