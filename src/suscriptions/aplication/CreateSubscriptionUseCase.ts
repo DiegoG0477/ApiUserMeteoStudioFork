@@ -6,7 +6,7 @@ export class CreateSubscriptionUseCase {
 
   async run(active_plan_id: number, user_id: number, plan_expiration: string):Promise<Subscription | null> {
     try {
-      const subscription = this.susbcriptionRepository.createSubscription(
+      const subscription = await this.susbcriptionRepository.createSubscription(
         active_plan_id,
         user_id,
         plan_expiration

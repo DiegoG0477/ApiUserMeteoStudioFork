@@ -100,7 +100,6 @@ export class MysqlSubscriptionRepository implements SubscriptionRepository {
       id_subscription,
     ];
     try {
-      const [subscriptionR]: any = await query(sql, params);
       subscription = new Subscription(
         id_subscription,
         active_plan_id,

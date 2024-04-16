@@ -33,6 +33,3 @@ userRouter.get(
     verifyToken,
     getUserByIdController.run.bind(getUserByIdController)
 )
-
-
-
