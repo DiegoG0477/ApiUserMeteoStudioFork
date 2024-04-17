@@ -29,7 +29,7 @@ export class RegisterUserController {
             first_last_name: user?.first_last_name,
             second_last_name: user?.second_last_name,
             birthdate: user?.birthdate,
-            type_id: user?.type_id,
+            type_id: user?.type_id
           },
         });
       } else
