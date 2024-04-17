@@ -28,6 +28,3 @@ subscriptionsRouter.put(
     "/",
     updateSubscriptionController.run.bind(updateSubscriptionController)
 )
-
-
-
